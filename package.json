@@ -1,0 +1,33 @@
+{
+    "name": "@rad/eslint-plugin-rules",
+    "version": "0.0.0",
+    "keywords": [
+        "eslint",
+        "eslintplugin",
+        "eslint-plugin"
+    ],
+    "type": "module",
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.mjs",
+            "require": "./dist/index.cjs"
+        }
+    },
+    "main": "./dist/index.mjs",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.ts",
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "build": "unbuild",
+        "lint": "eslint .",
+        "lint-fix": "eslint --fix ."
+    },
+    "devDependencies": {
+        "@types/eslint": "^9.6.1",
+        "eslint": "^9.13.0",
+        "unbuild": "^2.0.0"
+    }
+}
