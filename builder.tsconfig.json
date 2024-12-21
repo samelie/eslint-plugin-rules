@@ -1,3 +1,17 @@
 {
-    "extends": "../config/builder.tsconfig.json"
+    "extends": "../config/base.tsconfig.json",
+    "include": [
+        "src"
+    ],
+    "compilerOptions": {
+        "rootDir": "src",
+        "baseUrl": ".",
+        "composite": true,
+        "skipLibCheck": true,
+        "target": "ES2020",
+        "module": "ESNext",
+        "moduleResolution": "bundler",
+        "allowSyntheticDefaultImports": true,
+        "noEmit": false
+    }
 }
