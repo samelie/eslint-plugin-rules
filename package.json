@@ -23,7 +23,8 @@
     "scripts": {
         "build": "unbuild",
         "lint": "eslint .",
-        "lint:fix": "eslint --fix ."
+        "lint:fix": "eslint --fix .",
+"types": "tsc -p tsconfig.typecheck.json"
     },
     "dependencies": {
         "tsup": "^8.3.5"
