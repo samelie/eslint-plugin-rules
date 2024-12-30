@@ -23,14 +23,14 @@
     "scripts": {
         "build": "unbuild",
         "lint": "eslint .",
-        "lint-fix": "eslint --fix ."
+        "lint:fix": "eslint --fix ."
     },
     "dependencies": {
         "tsup": "^8.3.5"
     },
     "devDependencies": {
         "@types/eslint": "^9.6.1",
-        "@typescript-eslint/utils": "^8.18.1",
+        "@typescript-eslint/utils": "^8.18.2",
         "eslint": "^9.17.0",
         "unbuild": "^2.0.0"
     }

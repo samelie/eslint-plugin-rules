@@ -52,8 +52,8 @@ function createRule<TOptions extends readonly unknown[], TMessageIds extends str
         create: ((context: Readonly<RuleContext<TMessageIds, TOptions>>): RuleListener => {
             const optionsWithDefault = context.options.map((options, index) => {
                 return {
-                    ...(typeof defaultOptions[index] === 'object' ? defaultOptions[index] : {}),
-                    ...(typeof options === 'object' && options !== null ? options : {}),
+                    ...(typeof defaultOptions[index] === "object" ? defaultOptions[index] : {}),
+                    ...(typeof options === "object" && options !== null ? options : {}),
                 };
             }) as unknown as TOptions;
             return create(context, optionsWithDefault);

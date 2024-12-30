@@ -1,38 +1,94 @@
 {
     "compilerOptions": {
+        "resolveJsonModule": true,
+        "strictNullChecks": true,
+        "esModuleInterop": true,
+        "verbatimModuleSyntax": true,
+        "skipDefaultLibCheck": true,
         "target": "ES2020",
+        "useDefineForClassFields": true,
         "module": "ESNext",
         "lib": [
             "ES2020",
             "DOM"
         ],
-        "moduleResolution": "bundler",
-        "outDir": "dist",
-        "esModuleInterop": true,
-        "strict": true,
         "skipLibCheck": true,
-        "jsx": "preserve",
-        "declaration": true,
-        "declarationDir": "dist/types",
-        "resolveJsonModule": true,
+        "moduleResolution": "bundler",
+        "allowImportingTsExtensions": true,
+        "isolatedModules": true,
+        "moduleDetection": "force",
+        "noEmit": false,
+        "strict": true,
         "noUnusedLocals": true,
         "noUnusedParameters": true,
-        "noImplicitReturns": true,
         "noFallthroughCasesInSwitch": true,
-        "verbatimModuleSyntax": true,
-        "forceConsistentCasingInFileNames": true,
-        "composite": true,
-        "noEmit": false,
-        "allowSyntheticDefaultImports": true
+        "noUncheckedSideEffectImports": true,
+        "paths": {
+            "@rad/env": [
+                "./packages/env/src/index",
+                "../env/src/index",
+                "../packages/env/src/index",
+                "../../packages/env/src/index",
+                "../../../packages/env/src/index"
+            ],
+            "@rad/vite": [
+                "./packages/vite/src/index",
+                "../vite/src/index",
+                "../packages/vite/src/index",
+                "../../packages/vite/src/index",
+                "../../../packages/vite/src/index"
+            ],
+            "@rad/publish": [
+                "./packages/publish/src/*",
+                "../publish/src/*",
+                "../packages/publish/src/*",
+                "../../packages/publish/src/*",
+                "../../../packages/publish/src/*"
+            ],
+            "@rad/design-tokens/*": [
+                "./packages/design-tokens/*",
+                "../design-tokens/*",
+                "../packages/design-tokens/*",
+                "../../packages/design-tokens/*",
+                "../../../packages/design-tokens/*"
+            ],
+            "@rad/eslint-plugin-rules": [
+                "./packages/eslint-plugin-rules",
+                "../eslint-plugin-rules",
+                "../packages/eslint-plugin-rules",
+                "../../packages/eslint-plugin-rules",
+                "../../../packages/eslint-plugin-rules",
+                "../../../../packages/eslint-plugin-rules"
+            ],
+            "@rad/global-type-defs": [
+                "./packages/global-type-defs",
+                "../global-type-defs",
+                "../packages/global-type-defs",
+                "../../packages/global-type-defs",
+                "../../../packages/global-type-defs",
+                "../../../../packages/global-type-defs"
+            ],
+            "@rad/type-utils": [
+                "./packages/type-utils/src/index",
+                "../type-utils/src/index",
+                "../packages/type-utils/src/index",
+                "../../packages/type-utils/src/index",
+                "../../../packages/type-utils/src/index"
+            ]
+        },
+        "declaration": true,
+        "declarationDir": "./dist/types",
+        "allowSyntheticDefaultImports": true,
+        "composite": true
     },
     "include": [
-        "src/**/*.ts",
-        "src/**/*.tsx",
-        "src/**/*.vue"
+        "src/**/*.ts"
     ],
     "exclude": [
         "dist",
+        "build",
         "node_modules",
-        "**/*.spec.ts"
+        "output",
+        "dist/types"
     ]
 }
