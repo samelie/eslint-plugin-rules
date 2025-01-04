@@ -45,6 +45,13 @@
                 "../../packages/publish/src/*",
                 "../../../packages/publish/src/*"
             ],
+            "@rad/logging": [
+                "./packages/logging/src/*",
+                "../logging/src/*",
+                "../packages/logging/src/*",
+                "../../packages/logging/src/*",
+                "../../../packages/logging/src/*"
+            ],
             "@rad/design-tokens/*": [
                 "./packages/design-tokens/*",
                 "../design-tokens/*",
