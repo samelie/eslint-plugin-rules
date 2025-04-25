@@ -1,5 +1,4 @@
-import baseConfig from '@rad/eslint';
+// eslint-disable-next-line antfu/no-import-dist
+import config from "../eslint/dist/eslint.config.mjs";
 
-export default [
-  ...baseConfig,
-];
+export default config();
