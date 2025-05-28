@@ -27,13 +27,13 @@
     "types": "tsc -p tsconfig.typecheck.json"
   },
   "dependencies": {
-    "tsup": "^8.4.0"
+    "tsup": "^8.5.0"
   },
   "devDependencies": {
-    "@typescript-eslint/utils": "^8.31.1",
-    "eslint": "^9.26.0",
+    "@rad/eslint": "workspace:*",
+    "@typescript-eslint/utils": "^8.33.0",
+    "eslint": "^9.27.0",
     "typescript": "^5.8.3",
-    "unbuild": "^3.5.0",
-    "@rad/eslint": "workspace:*"
+    "unbuild": "^3.5.0"
   }
 }
