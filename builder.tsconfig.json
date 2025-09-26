@@ -101,6 +101,27 @@
                 "../packages/type-utils/src/index",
                 "../../packages/type-utils/src/index",
                 "../../../packages/type-utils/src/index"
+            ],
+            "@rad/map2d/*": [
+                "./packages/map2d/src/*",
+                "../map2d/src/*",
+                "../packages/map2d/src/*",
+                "../../packages/map2d/src/*",
+                "../../../packages/map2d/src/*"
+            ],
+            "@rad/map2d-vue/*": [
+                "./packages/map2d-vue/src/*",
+                "../map2d-vue/src/*",
+                "../packages/map2d-vue/src/*",
+                "../../packages/map2d-vue/src/*",
+                "../../../packages/map2d-vue/src/*"
+            ],
+            "@rad/worker-streams": [
+                "./packages/worker-streams/src/index",
+                "../worker-streams/src/index",
+                "../packages/worker-streams/src/index",
+                "../../packages/worker-streams/src/index",
+                "../../../packages/worker-streams/src/index"
             ]
         },
         "declaration": true,
