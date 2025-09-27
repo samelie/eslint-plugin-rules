@@ -28,11 +28,11 @@
     "knip": "knip"
   },
   "devDependencies": {
+    "@rad/config": "workspace:*",
     "@rad/eslint": "workspace:*",
     "@typescript-eslint/utils": "^8.44.1",
     "eslint": "^9.36.0",
     "typescript": "^5.9.2",
-    "unbuild": "^3.6.1",
-    "@rad/config": "workspace:*"
+    "unbuild": "^3.6.1"
   }
 }
