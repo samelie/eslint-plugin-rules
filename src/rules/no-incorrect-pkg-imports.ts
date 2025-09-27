@@ -52,7 +52,7 @@ export default createEslintRule<Options, MessageIds>({
                 if (pkgToPkgRoot) {
                     context.report({
                         messageId: "noIncorrectPkgImports",
-                        node: node.specifiers[0],
+                        node: node.specifiers[0] || node,
                         fix: fixer => {
                             // eg: "../../../../../packages/type-gen-output/fake-type-gen"; --> "@rad/type-gen-output/fake-type-gen";
                             let special = pkgToPkgRoot.find(m => !["..", "packages"].some(n => m.includes(n))) || "";
@@ -64,7 +64,7 @@ export default createEslintRule<Options, MessageIds>({
                 const pkgToPkg = node.source.value.match(/^((\.\.\/)+(.*?)(\/src))?(\/.+)?$/);
                 if (pkgToPkg) {
                     context.report({
-                        node: node.specifiers[0],
+                        node: node.specifiers[0] || node,
                         messageId: "pkgToPkg",
                         fix: fixer => {
                             // eg: "import { ValuesType } from "../../../../../../type-utils/src";";
