@@ -71,6 +71,13 @@
                 "../../packages/design-tokens/*",
                 "../../../packages/design-tokens/*"
             ],
+            "@rad/design-system/*": [
+                "./packages/design-system/src/*",
+                "../design-system/*",
+                "../packages/design-system/src/*",
+                "../../packages/design-system/src/*",
+                "../../../packages/design-system/src/*"
+            ],
             "@rad/eslint": [
                 "./packages/eslint",
                 "../eslint",
