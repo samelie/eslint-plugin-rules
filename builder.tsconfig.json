@@ -50,13 +50,6 @@
                 "../../packages/publish/src/*",
                 "../../../packages/publish/src/*"
             ],
-            "@rad/logging": [
-                "./packages/logging/src/index",
-                "../logging/src/index",
-                "../packages/logging/src/index",
-                "../../packages/logging/src/index",
-                "../../../packages/logging/src/index"
-            ],
             "@rad/config": [
                 "./packages/config/src/index",
                 "../config/src/index",

@@ -30,7 +30,7 @@
   "devDependencies": {
     "@rad/config": "workspace:*",
     "@rad/eslint": "workspace:*",
-    "@typescript-eslint/utils": "^8.45.0",
+    "@typescript-eslint/utils": "^8.46.0",
     "eslint": "^9.37.0",
     "typescript": "^5.9.3",
     "unbuild": "^3.6.1"
