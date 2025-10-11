@@ -43,7 +43,7 @@
                 "../../packages/vite/src/index",
                 "../../../packages/vite/src/index"
             ],
-            "@rad/build-configs/*": [
+            "@adddog/build-configs/*": [
                 "./packages/publish/src/*",
                 "../publish/src/*",
                 "../packages/publish/src/*",
