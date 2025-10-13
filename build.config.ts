@@ -8,6 +8,7 @@ export default defineBuildConfig({
   clean: true,
   rollup: {
     emitCJS: true,
+    cjsBridge: true,
   },
   externals: ['@typescript-eslint/utils', 'eslint'],
 })
