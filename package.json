@@ -1,20 +1,21 @@
 {
   "name": "@adddog/eslint-plugin-rules",
+  "type": "module",
   "version": "0.0.2",
-   "repository": {
+  "private": false,
+  "homepage": "https://github.com/samelie/eslint-plugin-rules#readme",
+  "repository": {
     "type": "git",
     "url": "https://github.com/samelie/eslint-plugin-rules.git"
   },
   "bugs": {
     "url": "https://github.com/samelie/eslint-plugin-rules/issues"
   },
-  "homepage": "https://github.com/samelie/eslint-plugin-rules#readme",
   "keywords": [
     "eslint",
     "eslintplugin",
     "eslint-plugin"
   ],
-  "type": "module",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -28,6 +29,11 @@
   "files": [
     "dist"
   ],
+  "engines": {
+    "node": ">= 22",
+    "pnpm": ">= 10",
+    "npm": ">= 11"
+  },
   "scripts": {
     "build": "unbuild",
     "lint": "eslint .",
@@ -40,28 +46,22 @@
     "release": "bumpp",
     "dev": "tsx src/index.ts"
   },
-  "devDependencies": {
-    "@antfu/eslint-config": "^5.4.1",
-    "@typescript-eslint/utils": "^8.46.0",
+  "peerDependencies": {
+    "knip": "^5.64.3",
     "typescript": "^5.9.3",
-    "bumpp": "^10.3.1",
-    "unbuild": "^3.6.1"
-  },
-  "private": false,
-  "publishConfig": {
-    "access": "public"
-  },
-  "engines": {
-    "node": ">= 22",
-    "pnpm": ">= 10",
-    "npm": ">= 11"
+    "vitest": "^3.2.4"
   },
   "dependencies": {
     "eslint": "^9.37.0"
   },
-  "peerDependencies": {
+  "devDependencies": {
+    "@antfu/eslint-config": "^5.4.1",
+    "@typescript-eslint/utils": "^8.46.0",
+    "bumpp": "^10.3.1",
     "typescript": "^5.9.3",
-    "knip": "^5.64.3",
-    "vitest": "^3.2.4"
+    "unbuild": "^3.6.1"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

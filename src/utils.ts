@@ -1,13 +1,13 @@
-import type { RuleListener, RuleWithMeta, RuleWithMetaAndName } from "@typescript-eslint/utils/eslint-utils";
-import type { RuleContext } from "@typescript-eslint/utils/ts-eslint";
-import type { Rule } from "eslint";
+import type { RuleListener, RuleWithMeta, RuleWithMetaAndName } from '@typescript-eslint/utils/eslint-utils'
+import type { RuleContext } from '@typescript-eslint/utils/ts-eslint'
+import type { Rule } from 'eslint'
 
-const hasDocs = ["consistent-list-newline", "if-newline", "import-dedupe", "top-level-function"];
+const hasDocs = ['consistent-list-newline', 'if-newline', 'import-dedupe', 'top-level-function']
 
-const blobUrl = "https://github.com/antfu/eslint-plugin-antfu/blob/main/src/rules/";
+const blobUrl = 'https://github.com/antfu/eslint-plugin-antfu/blob/main/src/rules/'
 
 export interface RuleModule<T extends readonly unknown[]> extends Rule.RuleModule {
-    defaultOptions: T;
+  defaultOptions: T
 }
 
 /**
@@ -17,24 +17,24 @@ export interface RuleModule<T extends readonly unknown[]> extends Rule.RuleModul
  * @returns Function to create a rule with the docs URL format.
  */
 function RuleCreator(urlCreator: (name: string) => string) {
-    // This function will get much easier to call when this is merged https://github.com/Microsoft/TypeScript/pull/26349
-    // TODO - when the above PR lands; add type checking for the context.report `data` property
-    return function createNamedRule<TOptions extends readonly unknown[], TMessageIds extends string>({
-        name,
-        meta,
-        ...rule
-    }: Readonly<RuleWithMetaAndName<TOptions, TMessageIds>>): RuleModule<TOptions> {
-        return createRule<TOptions, TMessageIds>({
-            meta: {
-                ...meta,
-                docs: {
-                    ...meta.docs,
-                    url: urlCreator(name),
-                },
-            },
-            ...rule,
-        });
-    };
+  // This function will get much easier to call when this is merged https://github.com/Microsoft/TypeScript/pull/26349
+  // TODO - when the above PR lands; add type checking for the context.report `data` property
+  return function createNamedRule<TOptions extends readonly unknown[], TMessageIds extends string>({
+    name,
+    meta,
+    ...rule
+  }: Readonly<RuleWithMetaAndName<TOptions, TMessageIds>>): RuleModule<TOptions> {
+    return createRule<TOptions, TMessageIds>({
+      meta: {
+        ...meta,
+        docs: {
+          ...meta.docs,
+          url: urlCreator(name),
+        },
+      },
+      ...rule,
+    })
+  }
 }
 
 /**
@@ -44,44 +44,44 @@ function RuleCreator(urlCreator: (name: string) => string) {
  * @remarks It is generally better to provide a docs URL function to RuleCreator.
  */
 function createRule<TOptions extends readonly unknown[], TMessageIds extends string>({
-    create,
-    defaultOptions,
-    meta,
+  create,
+  defaultOptions,
+  meta,
 }: Readonly<RuleWithMeta<TOptions, TMessageIds>>): RuleModule<TOptions> {
-    return {
-        create: ((context: Readonly<RuleContext<TMessageIds, TOptions>>): RuleListener => {
-            const optionsWithDefault = context.options.map((options, index) => {
-                return {
-                    ...(typeof defaultOptions[index] === "object" ? defaultOptions[index] : {}),
-                    ...(typeof options === "object" && options !== null ? options : {}),
-                };
-            }) as unknown as TOptions;
-            return create(context, optionsWithDefault);
-            // eslint-disable-next-line ts/no-explicit-any
-        }) as any,
-        defaultOptions,
-        // eslint-disable-next-line ts/no-explicit-any
-        meta: meta as any,
-    };
+  return {
+    create: ((context: Readonly<RuleContext<TMessageIds, TOptions>>): RuleListener => {
+      const optionsWithDefault = context.options.map((options, index) => {
+        return {
+          ...(typeof defaultOptions[index] === 'object' ? defaultOptions[index] : {}),
+          ...(typeof options === 'object' && options !== null ? options : {}),
+        }
+      }) as unknown as TOptions
+      return create(context, optionsWithDefault)
+    }) as any,
+    defaultOptions,
+
+    meta: meta as any,
+  }
 }
 
 export const createEslintRule = RuleCreator(
-    ruleName => (hasDocs.includes(ruleName) ? `${blobUrl}${ruleName}.md` : `${blobUrl}${ruleName}.test.ts`),
-    // eslint-disable-next-line ts/no-explicit-any
-) as any as <TOptions extends readonly unknown[], TMessageIds extends string>({
-    name,
-    meta,
-    ...rule
-}: Readonly<RuleWithMetaAndName<TOptions, TMessageIds>>) => RuleModule<TOptions>;
+  ruleName => (hasDocs.includes(ruleName) ? `${blobUrl}${ruleName}.md` : `${blobUrl}${ruleName}.test.ts`),
 
-const warned = new Set<string>();
+) as any as <TOptions extends readonly unknown[], TMessageIds extends string>({
+  name,
+  meta,
+  ...rule
+}: Readonly<RuleWithMetaAndName<TOptions, TMessageIds>>) => RuleModule<TOptions>
+
+const warned = new Set<string>()
 
 export function warnOnce(message: string) {
-    if (warned.has(message)) { return; }
-    warned.add(message);
-    console.warn(message);
+  if (warned.has(message)) {
+    return
+  }
+  warned.add(message)
+  console.warn(message)
 }
 
-// eslint-disable-next-line ts/no-explicit-any
-const isFn = (type: string) => (node: any) => node && node.type === type;
-export const isLiteral = isFn("Literal");
+const isFn = (type: string) => (node: any) => node && node.type === type
+export const isLiteral = isFn('Literal')
