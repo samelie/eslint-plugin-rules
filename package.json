@@ -1,6 +1,14 @@
 {
-  "name": "@rad/eslint-plugin-rules",
-  "version": "0.0.0",
+  "name": "@adddog/eslint-plugin-rules",
+  "version": "0.0.1",
+   "repository": {
+    "type": "git",
+    "url": "https://github.com/samelie/eslint-plugin-rules.git"
+  },
+  "bugs": {
+    "url": "https://github.com/samelie/eslint-plugin-rules/issues"
+  },
+  "homepage": "https://github.com/samelie/eslint-plugin-rules#readme",
   "keywords": [
     "eslint",
     "eslintplugin",
@@ -27,20 +35,33 @@
     "types": "tsc -p tsconfig.typecheck.json",
     "knip": "knip",
     "test": "vitest run",
+    "prepublishOnly": "pnpm run test && pnpm run lint && pnpm run types && pnpm run build",
+    "prepack": "pnpm run prepublishOnly",
+    "release": "bumpp",
     "dev": "tsx src/index.ts"
   },
   "devDependencies": {
-    "@rad/config": "workspace:*",
-    "@rad/eslint": "workspace:*",
+    "@antfu/eslint-config": "^5.4.1",
     "@typescript-eslint/utils": "^8.46.0",
-    "eslint": "^9.37.0",
     "typescript": "^5.9.3",
+    "bumpp": "^10.3.1",
     "unbuild": "^3.6.1"
   },
-  "private": true,
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "engines": {
     "node": ">= 22",
     "pnpm": ">= 10",
     "npm": ">= 11"
+  },
+  "dependencies": {
+    "eslint": "^9.37.0"
+  },
+  "peerDependencies": {
+    "typescript": "^5.9.3",
+    "knip": "^5.64.3",
+    "vitest": "^3.2.4"
   }
 }

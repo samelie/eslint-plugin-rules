@@ -1,4 +1,3 @@
-// eslint-disable-next-line antfu/no-import-dist
-import config from "../eslint/dist/eslint.config.mjs";
+import antfu from "@antfu/eslint-config";
 
-export default config();
+export default antfu({node: true, typescript: true, vue: true});

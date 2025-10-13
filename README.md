@@ -1,4 +1,4 @@
-# @rad/eslint-plugin-rules
+# @adddog/eslint-plugin-rules
 
 ## Scripts
 
