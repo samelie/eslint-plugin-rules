@@ -1,58 +1,58 @@
 {
-  "compilerOptions": {
-    "target": "ESNext",
-    "lib": [
-      "ESNext",
-      "DOM",
-      "DOM.Iterable",
-      "esnext",
-      "esnext.asynciterable"
+    "compilerOptions": {
+        "resolveJsonModule": true,
+        "strictNullChecks": true,
+        "esModuleInterop": true,
+        "verbatimModuleSyntax": true,
+        "skipDefaultLibCheck": true,
+        "exactOptionalPropertyTypes": false,
+        "noUncheckedIndexedAccess": true,
+        "noErrorTruncation": true,
+        "traceResolution": false,
+        "noPropertyAccessFromIndexSignature": false,
+        "target": "ESNext",
+        "useDefineForClassFields": true,
+        "module": "ESNext",
+        "lib": [
+            "ESNext",
+            "DOM",
+            "DOM.Iterable",
+            "esnext",
+            "esnext.asynciterable"
+        ],
+        "skipLibCheck": true,
+        "moduleResolution": "bundler",
+        "allowImportingTsExtensions": true,
+        "isolatedModules": true,
+        "moduleDetection": "force",
+        "noEmit": true,
+        "strict": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "noFallthroughCasesInSwitch": true,
+        "noUncheckedSideEffectImports": true,
+        "paths": {},
+        "types": [
+            "node"
+        ]
+    },
+    "include": [
+        "src"
     ],
-    "moduleDetection": "force",
-    "useDefineForClassFields": true,
-    "module": "ESNext",
-    "moduleResolution": "bundler",
-    "paths": {},
-    "resolveJsonModule": true,
-    "types": [
-      "node"
+    "exclude": [
+        "node_modules",
+        "dist",
+        "build"
     ],
-    "allowImportingTsExtensions": true,
-    "strict": true,
-    "strictNullChecks": true,
-    "exactOptionalPropertyTypes": false,
-    "noFallthroughCasesInSwitch": true,
-    "noPropertyAccessFromIndexSignature": false,
-    "noUncheckedIndexedAccess": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "isolatedModules": true,
-    "verbatimModuleSyntax": true,
-    "skipDefaultLibCheck": true,
-    "noErrorTruncation": true,
-    "traceResolution": false,
-    "skipLibCheck": true,
-    "noUncheckedSideEffectImports": true
-  },
-  "include": [
-    "src"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist",
-    "build"
-  ],
-  "watchOptions": {
-    "excludeDirectories": [
-      "**/node_modules",
-      "build",
-      "dist"
-    ],
-    "fallbackPolling": "dynamicPriority",
-    "synchronousWatchDirectory": true,
-    "watchDirectory": "UseFsEvents",
-    "watchFile": "UseFsEventsOnParentDirectory"
-  }
+    "watchOptions": {
+        "excludeDirectories": [
+            "**/node_modules",
+            "build",
+            "dist"
+        ],
+        "fallbackPolling": "dynamicPriority",
+        "synchronousWatchDirectory": true,
+        "watchDirectory": "UseFsEvents",
+        "watchFile": "UseFsEventsOnParentDirectory"
+    }
 }
