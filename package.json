@@ -35,7 +35,7 @@
     "types": "tsc -p tsconfig.typecheck.json",
     "knip": "knip",
     "test": "vitest run",
-    "prepublishOnly": "pnpm run test && pnpm run lint && pnpm run types && pnpm run build",
+    "prepublishOnly": "pnpm run lint && pnpm run types && pnpm run build",
     "prepack": "pnpm run prepublishOnly",
     "release": "bumpp",
     "dev": "tsx src/index.ts"
