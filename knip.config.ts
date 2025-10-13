@@ -52,7 +52,7 @@ export default {
   ],
 
   // Dependencies to ignore in the analysis
-  ignoreDependencies: ['@rad/config', '@rad/eslint', 'tsx', 'eslint', 'typescript', 'vitest', '@vitest/coverage-v8'],
+  ignoreDependencies: ['@rad/config', '@adddog/eslint', 'tsx', 'eslint', 'typescript', 'vitest', '@vitest/coverage-v8'],
 
   // Class and enum members to ignore
   ignoreMembers: [
