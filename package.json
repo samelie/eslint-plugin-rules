@@ -1,7 +1,7 @@
 {
   "name": "@adddog/eslint-plugin-rules",
   "type": "module",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "private": false,
   "homepage": "https://github.com/samelie/eslint-plugin-rules#readme",
   "repository": {
@@ -62,6 +62,7 @@
     "unbuild": "^3.6.1"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   }
 }
