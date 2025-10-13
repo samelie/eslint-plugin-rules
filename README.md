@@ -70,9 +70,9 @@ import { env } from '../../env/src/config'
 #### ✅ Correct
 
 ```typescript
+import { env } from '@rad/env'
 // Use workspace scope
 import { logger } from '@rad/logging'
-import { env } from '@rad/env'
 ```
 
 #### Options
@@ -88,7 +88,7 @@ If you're not working in a monorepo with workspace packages, this rule is unnece
 This plugin exports TypeScript types for better ESLint configuration type checking:
 
 ```typescript
-import type { Rules, RuleOptions } from '@adddog/eslint-plugin-rules'
+import type { RuleOptions, Rules } from '@adddog/eslint-plugin-rules'
 
 const config = {
   rules: {
