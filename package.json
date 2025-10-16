@@ -48,7 +48,7 @@
     "test": "vitest run",
     "prepublishOnly": "pnpm run lint && pnpm run types && pnpm run build",
     "prepack": "pnpm run prepublishOnly",
-    "release": "bumpp --yes --no-push --release patch",
+    "release": "bumpp --yes --no-push --no-tag --release patch",
     "dev": "tsx src/index.ts"
   },
   "peerDependencies": {
