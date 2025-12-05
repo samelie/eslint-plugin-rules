@@ -60,9 +60,9 @@
     "@eslint/js": "^9.39.1"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^6.2.0",
-    "@typescript-eslint/utils": "^8.46.4",
-    "bumpp": "^10.3.1",
+    "@antfu/eslint-config": "^6.4.2",
+    "@typescript-eslint/utils": "^8.48.1",
+    "bumpp": "^10.3.2",
     "typescript": "^5.9.3",
     "unbuild": "^3.6.1"
   },
