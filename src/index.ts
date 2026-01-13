@@ -1,4 +1,5 @@
 import type { ESLint, Linter } from 'eslint'
+import noAsUnknownAs from './rules/no-as-unknown-as'
 import noIncorrectPkgImports from './rules/no-incorrect-pkg-imports'
 
 /**
@@ -12,6 +13,7 @@ const plugin = {
     name: 'adddog',
   },
   rules: {
+    'no-as-unknown-as': noAsUnknownAs,
     'no-incorrect-pkg-imports': noIncorrectPkgImports,
   },
 } satisfies ESLint.Plugin
