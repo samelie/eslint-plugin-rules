@@ -44,12 +44,12 @@
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "types": "tsc -p tsconfig.typecheck.json",
-    "knip": "knip",
     "test": "echo '⚠️⚠️⚠️no test vitest --watch=false'",
     "prepublishOnly": "pnpm run lint && pnpm run types && pnpm run build",
     "prepack": "pnpm run prepublishOnly",
     "release": "bumpp --yes --no-push --no-tag --release patch",
-    "dev": "tsx src/index.ts"
+    "dev": "tsx src/index.ts",
+    "knip": "knip"
   },
   "peerDependencies": {
     "knip": "^5.64.3",
@@ -60,9 +60,9 @@
     "@eslint/js": "^9.39.2"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^6.7.3",
+    "@antfu/eslint-config": "^7.0.0",
     "@typescript-eslint/utils": "^8.53.0",
-    "bumpp": "^10.3.2",
+    "bumpp": "^10.4.0",
     "eslint": "^9.39.2",
     "typescript": "^5.9.3",
     "unbuild": "^3.6.1"
