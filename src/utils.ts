@@ -1,6 +1,6 @@
-import type { RuleListener, RuleWithMeta, RuleWithMetaAndName } from '@typescript-eslint/utils/eslint-utils'
-import type { RuleContext } from '@typescript-eslint/utils/ts-eslint'
-import type { Rule } from 'eslint'
+import type { RuleListener, RuleWithMeta, RuleWithMetaAndName } from "@typescript-eslint/utils/eslint-utils";
+import type { RuleContext } from "@typescript-eslint/utils/ts-eslint";
+import type { Rule } from "eslint";
 
 /**
  * List of rule names that have dedicated documentation markdown files.
@@ -8,7 +8,7 @@ import type { Rule } from 'eslint'
  * Rules in this list will link to `.md` files, while others will link
  * to their corresponding `.test.ts` files as documentation.
  */
-const rulesWithDedicatedDocs = ['consistent-list-newline', 'if-newline', 'import-dedupe', 'top-level-function']
+const rulesWithDedicatedDocs = ["consistent-list-newline", "if-newline", "import-dedupe", "top-level-function"];
 
 /**
  * Base URL for rule documentation in the source repository.
@@ -16,7 +16,7 @@ const rulesWithDedicatedDocs = ['consistent-list-newline', 'if-newline', 'import
  * Used to generate documentation URLs for each rule based on whether
  * they have dedicated markdown docs or test file documentation.
  */
-const ruleDocumentationBaseUrl = 'https://github.com/antfu/eslint-plugin-antfu/blob/main/src/rules/'
+const ruleDocumentationBaseUrl = "https://github.com/antfu/eslint-plugin-antfu/blob/main/src/rules/";
 
 /**
  * Extended ESLint rule module that includes default options.
@@ -27,7 +27,7 @@ const ruleDocumentationBaseUrl = 'https://github.com/antfu/eslint-plugin-antfu/b
  * @template TOptions - Tuple type representing the rule's option values
  */
 export interface RuleModule<TOptions extends readonly unknown[]> extends Rule.RuleModule {
-  defaultOptions: TOptions
+    defaultOptions: TOptions;
 }
 
 /**
@@ -45,33 +45,33 @@ export interface RuleModule<TOptions extends readonly unknown[]> extends Rule.Ru
  * for the context.report `data` property.
  */
 function createRuleFactory(urlCreator: (ruleName: string) => string) {
-  /**
-   * Creates a named ESLint rule with automatic documentation URL generation.
-   *
-   * @template TOptions - Tuple type of rule option values
-   * @template TMessageIds - Union type of message identifier strings
-   *
-   * @param config - Rule configuration including name, meta, and create function
-   * @param config.name - The name of the rule
-   * @param config.meta - Rule metadata including docs, messages, and schema
-   * @returns Configured rule module with default options and documentation
-   */
-  return function createNamedRule<TOptions extends readonly unknown[], TMessageIds extends string>({
-    name,
-    meta,
-    ...restOfRule
-  }: Readonly<RuleWithMetaAndName<TOptions, TMessageIds>>): RuleModule<TOptions> {
-    return createRule<TOptions, TMessageIds>({
-      meta: {
-        ...meta,
-        docs: {
-          ...meta.docs,
-          url: urlCreator(name),
-        },
-      },
-      ...restOfRule,
-    })
-  }
+    /**
+     * Creates a named ESLint rule with automatic documentation URL generation.
+     *
+     * @template TOptions - Tuple type of rule option values
+     * @template TMessageIds - Union type of message identifier strings
+     *
+     * @param config - Rule configuration including name, meta, and create function
+     * @param config.name - The name of the rule
+     * @param config.meta - Rule metadata including docs, messages, and schema
+     * @returns Configured rule module with default options and documentation
+     */
+    return function createNamedRule<TOptions extends readonly unknown[], TMessageIds extends string>({
+        name,
+        meta,
+        ...restOfRule
+    }: Readonly<RuleWithMetaAndName<TOptions, TMessageIds>>): RuleModule<TOptions> {
+        return createRule<TOptions, TMessageIds>({
+            meta: {
+                ...meta,
+                docs: {
+                    ...meta.docs,
+                    url: urlCreator(name),
+                },
+            },
+            ...restOfRule,
+        });
+    };
 }
 
 /**
@@ -111,11 +111,11 @@ function createRuleFactory(urlCreator: (ruleName: string) => string) {
  * ```
  */
 function createRule<TOptions extends readonly unknown[], TMessageIds extends string>({
-  create,
-  defaultOptions,
-  meta,
+    create,
+    defaultOptions,
+    meta,
 }: Readonly<RuleWithMeta<TOptions, TMessageIds>>): RuleModule<TOptions> {
-  return {
+    return {
     /**
      * Creates the rule listener with merged options.
      *
@@ -127,32 +127,36 @@ function createRule<TOptions extends readonly unknown[], TMessageIds extends str
      * - However, TypeScript sees them as incompatible due to additional methods in TS ESLint types
      * - We cast through `unknown` to explicitly bridge between these two type systems
      */
-    create: ((context: Readonly<RuleContext<TMessageIds, TOptions>>): RuleListener => {
-      // Merge each option object with its corresponding default
-      const mergedOptions = context.options.map((userOption, optionIndex) => {
-        const defaultOption = defaultOptions[optionIndex]
-        const isDefaultObject = typeof defaultOption === 'object' && defaultOption !== null
-        const isUserOptionObject = typeof userOption === 'object' && userOption !== null
+        // eslint-disable-next-line rad/no-as-unknown-as -- bridging TS ESLint and base ESLint type systems
+        create: ((context: Readonly<RuleContext<TMessageIds, TOptions>>): RuleListener => {
+            // Merge each option object with its corresponding default
+            // eslint-disable-next-line rad/no-as-unknown-as -- merging option objects requires type cast
+            const mergedOptions = context.options.map((userOption, optionIndex) => {
+                const defaultOption = defaultOptions?.[optionIndex];
+                const isDefaultObject = typeof defaultOption === "object" && defaultOption !== null;
+                const isUserOptionObject = typeof userOption === "object" && userOption !== null;
 
-        // If both are objects, merge them; otherwise use the user option or default
-        return {
-          ...(isDefaultObject ? defaultOption : {}),
-          ...(isUserOptionObject ? userOption : {}),
-        }
-      }) as unknown as TOptions
+                // If both are objects, merge them; otherwise use the user option or default
+                return {
+                    ...(isDefaultObject ? defaultOption : {}),
+                    ...(isUserOptionObject ? userOption : {}),
+                };
+            }) as unknown as TOptions;
 
-      return create(context, mergedOptions)
-    }) as unknown as Rule.RuleModule['create'],
+            return create(context, mergedOptions);
+        }) as unknown as Rule.RuleModule["create"],
 
-    defaultOptions,
-    /**
-     * Meta property type assertion:
-     * - TypeScript ESLint meta types are more specific than base ESLint meta types
-     * - Both are structurally compatible at runtime
-     * - Cast through `unknown` to bridge type systems
-     */
-    meta: meta as unknown as Rule.RuleModule['meta'],
-  }
+        // @ts-expect-error -- defaultOptions may be undefined, fallback to empty array
+        defaultOptions: defaultOptions ?? [],
+        /**
+         * Meta property type assertion:
+         * - TypeScript ESLint meta types are more specific than base ESLint meta types
+         * - Both are structurally compatible at runtime
+         * - Cast through `unknown` to bridge type systems
+         */
+        // eslint-disable-next-line rad/no-as-unknown-as -- bridging TS ESLint and base ESLint meta types
+        meta: meta as unknown as Rule.RuleModule["meta"],
+    };
 }
 
 /**
@@ -189,22 +193,23 @@ function createRule<TOptions extends readonly unknown[], TMessageIds extends str
  * - We're narrowing to a more specific, user-friendly signature
  * - Using `unknown` as intermediate step ensures intentional type casting
  */
+// eslint-disable-next-line rad/no-as-unknown-as -- narrowing to user-friendly signature
 export const createEslintRule = createRuleFactory(
-  (ruleName) => {
-    const fileExtension = rulesWithDedicatedDocs.includes(ruleName) ? 'md' : 'test.ts'
-    return `${ruleDocumentationBaseUrl}${ruleName}.${fileExtension}`
-  },
+    ruleName => {
+        const fileExtension = rulesWithDedicatedDocs.includes(ruleName) ? "md" : "test.ts";
+        return `${ruleDocumentationBaseUrl}${ruleName}.${fileExtension}`;
+    },
 ) as unknown as <TOptions extends readonly unknown[], TMessageIds extends string>({
-  name,
-  meta,
-  ...rule
-}: Readonly<RuleWithMetaAndName<TOptions, TMessageIds>>) => RuleModule<TOptions>
+    name,
+    meta,
+    ...rule
+}: Readonly<RuleWithMetaAndName<TOptions, TMessageIds>>) => RuleModule<TOptions>;
 
 /**
  * Set of warning messages that have already been logged.
  * Used to prevent duplicate warnings during rule execution.
  */
-const loggedWarnings = new Set<string>()
+const loggedWarnings = new Set<string>();
 
 /**
  * Logs a warning message only once during the lifetime of the process.
@@ -222,19 +227,19 @@ const loggedWarnings = new Set<string>()
  * ```
  */
 export function warnOnce(message: string): void {
-  if (loggedWarnings.has(message)) {
-    return
-  }
-  loggedWarnings.add(message)
-  console.warn(message)
+    if (loggedWarnings.has(message)) {
+        return;
+    }
+    loggedWarnings.add(message);
+    console.warn(message);
 }
 
 /**
  * AST node interface representing any ESTree node.
  */
 interface ASTNode {
-  type: string
-  [key: string]: unknown
+    type: string;
+    [key: string]: unknown;
 }
 
 /**
@@ -255,14 +260,14 @@ interface ASTNode {
  * ```
  */
 function createNodeTypeChecker(nodeType: string) {
-  return (node: unknown): node is ASTNode => {
-    return (
-      typeof node === 'object'
-      && node !== null
-      && 'type' in node
-      && (node as ASTNode).type === nodeType
-    )
-  }
+    return (node: unknown): node is ASTNode => {
+        return (
+            typeof node === "object"
+            && node !== null
+            && "type" in node
+            && (node as ASTNode).type === nodeType
+        );
+    };
 }
 
 /**
@@ -278,4 +283,4 @@ function createNodeTypeChecker(nodeType: string) {
  * }
  * ```
  */
-export const isLiteral = createNodeTypeChecker('Literal')
+export const isLiteral = createNodeTypeChecker("Literal");
