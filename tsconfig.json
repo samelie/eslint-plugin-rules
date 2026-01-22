@@ -10,31 +10,31 @@
       "esnext",
       "esnext.asynciterable"
     ],
-    "moduleDetection": "force",
-    "useDefineForClassFields": true,
-    "module": "ESNext",
+        "moduleDetection": "force",
+        "useDefineForClassFields": true,
+        "module": "ESNext",
+    "skipLibCheck": true,
     "moduleResolution": "bundler",
     "paths": {},
-    "resolveJsonModule": true,
-    "types": [
-      "node"
-    ],
+        "resolveJsonModule": true,
     "allowImportingTsExtensions": false,
+    "noEmit": false,
     "strict": true,
     "strictNullChecks": true,
     "exactOptionalPropertyTypes": false,
     "noFallthroughCasesInSwitch": true,
-    "noPropertyAccessFromIndexSignature": false,
+        "noPropertyAccessFromIndexSignature": false,
     "noUncheckedIndexedAccess": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noEmit": false,
     "esModuleInterop": true,
     "isolatedModules": true,
     "verbatimModuleSyntax": true,
     "skipDefaultLibCheck": true,
-    "skipLibCheck": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+    "types": [
+      "node"
+    ]
   },
   "include": [
     "src"

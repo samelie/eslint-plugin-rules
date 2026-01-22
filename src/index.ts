@@ -1,6 +1,6 @@
-import type { ESLint, Linter } from 'eslint'
-import noAsUnknownAs from './rules/no-as-unknown-as'
-import noIncorrectPkgImports from './rules/no-incorrect-pkg-imports'
+import type { ESLint, Linter } from "eslint";
+import noAsUnknownAs from "./rules/no-as-unknown-as";
+import noIncorrectPkgImports from "./rules/no-incorrect-pkg-imports";
 
 /**
  * ESLint plugin for custom monorepo rules.
@@ -9,21 +9,21 @@ import noIncorrectPkgImports from './rules/no-incorrect-pkg-imports'
  * helping enforce consistent import patterns across workspace packages.
  */
 const plugin = {
-  meta: {
-    name: 'adddog',
-  },
-  rules: {
-    'no-as-unknown-as': noAsUnknownAs,
-    'no-incorrect-pkg-imports': noIncorrectPkgImports,
-  },
-} satisfies ESLint.Plugin
+    meta: {
+        name: "adddog",
+    },
+    rules: {
+        "no-as-unknown-as": noAsUnknownAs,
+        "no-incorrect-pkg-imports": noIncorrectPkgImports,
+    },
+} satisfies ESLint.Plugin;
 
-export default plugin
+export default plugin;
 
 /**
  * Type representing the rules defined in this plugin.
  */
-type RuleDefinitions = (typeof plugin)['rules']
+type RuleDefinitions = (typeof plugin)["rules"];
 
 /**
  * Maps each rule name to its default options configuration.
@@ -32,8 +32,8 @@ type RuleDefinitions = (typeof plugin)['rules']
  * for each rule in the plugin.
  */
 export type RuleOptions = {
-  [K in keyof RuleDefinitions]: RuleDefinitions[K]['defaultOptions'];
-}
+    [K in keyof RuleDefinitions]: RuleDefinitions[K]["defaultOptions"];
+};
 
 /**
  * Maps each rule name to a properly typed Linter.RuleEntry.
@@ -51,5 +51,5 @@ export type RuleOptions = {
  * ```
  */
 export type Rules = {
-  [K in keyof RuleOptions]: Linter.RuleEntry<RuleOptions[K]>;
-}
+    [K in keyof RuleOptions]: Linter.RuleEntry<RuleOptions[K]>;
+};

@@ -1,8 +1,8 @@
-import { createEslintRule } from '../utils'
+import { createEslintRule } from "../utils";
 
-export const RULE_NAME = 'no-as-unknown-as'
-export type MessageIds = 'noDoubleAssertion'
-export type Options = []
+export const RULE_NAME = "no-as-unknown-as";
+export type MessageIds = "noDoubleAssertion";
+export type Options = [];
 
 /**
  * ESLint rule to prevent double type assertions via `as unknown as T`.
@@ -28,32 +28,32 @@ export type Options = []
  * ```
  */
 export default createEslintRule<Options, MessageIds>({
-  name: RULE_NAME,
-  meta: {
-    type: 'problem',
-    docs: {
-      description: 'Forbids `as unknown as T` double assertions',
+    name: RULE_NAME,
+    meta: {
+        type: "problem",
+        docs: {
+            description: "Forbids `as unknown as T` double assertions",
+        },
+        schema: [],
+        messages: {
+            noDoubleAssertion: "Avoid `as unknown as T` - bypasses type safety",
+        },
     },
-    schema: [],
-    messages: {
-      noDoubleAssertion: 'Avoid `as unknown as T` - bypasses type safety',
-    },
-  },
-  defaultOptions: [],
+    defaultOptions: [],
 
-  create(context) {
-    return {
-      TSAsExpression(node) {
-        if (
-          node.expression.type === 'TSAsExpression'
-          && node.expression.typeAnnotation.type === 'TSUnknownKeyword'
-        ) {
-          context.report({
-            node,
-            messageId: 'noDoubleAssertion',
-          })
-        }
-      },
-    }
-  },
-})
+    create(context) {
+        return {
+            TSAsExpression(node) {
+                if (
+                    node.expression.type === "TSAsExpression"
+                    && node.expression.typeAnnotation.type === "TSUnknownKeyword"
+                ) {
+                    context.report({
+                        node,
+                        messageId: "noDoubleAssertion",
+                    });
+                }
+            },
+        };
+    },
+});

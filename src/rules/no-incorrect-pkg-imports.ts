@@ -1,8 +1,8 @@
-import { createEslintRule } from '../utils'
+import { createEslintRule } from "../utils";
 
-export const RULE_NAME = 'no-incorrect-pkg-imports'
-export type MessageIds = 'relativePackageImport' | 'packageImportWithSrc'
-export type Options = []
+export const RULE_NAME = "no-incorrect-pkg-imports";
+export type MessageIds = "relativePackageImport" | "packageImportWithSrc";
+export type Options = [];
 
 /**
  * Regex pattern to match relative imports that traverse up to the packages directory.
@@ -23,7 +23,7 @@ export type Options = []
  * - [4]: Literal '/packages'
  * - [5]: Remaining path after package name
  */
-const RELATIVE_PACKAGES_IMPORT_PATTERN = /^((\.\.\/)+(.*?)(\/packages))?(\/.+)?$/
+const RELATIVE_PACKAGES_IMPORT_PATTERN = /^((\.\.\/)+(.*?)(\/packages))?(\/.+)?$/;
 
 /**
  * Regex pattern to match relative imports that include '/src' in the path.
@@ -44,13 +44,13 @@ const RELATIVE_PACKAGES_IMPORT_PATTERN = /^((\.\.\/)+(.*?)(\/packages))?(\/.+)?$
  * - [4]: Literal '/src'
  * - [5]: Remaining path after src
  */
-const RELATIVE_SRC_IMPORT_PATTERN = /^((\.\.\/)+(.*?)(\/src))?(\/.+)?$/
+const RELATIVE_SRC_IMPORT_PATTERN = /^((\.\.\/)+(.*?)(\/src))?(\/.+)?$/;
 
 /**
  * The workspace scope used for all internal packages.
  * In this monorepo, all packages are scoped under '@rad/'.
  */
-const WORKSPACE_SCOPE = '@rad'
+const WORKSPACE_SCOPE = "@rad";
 
 /**
  * ESLint rule to prevent incorrect package imports in a monorepo.
@@ -74,74 +74,74 @@ const WORKSPACE_SCOPE = '@rad'
  * @see https://pnpm.io/workspaces for more on pnpm workspace patterns
  */
 export default createEslintRule<Options, MessageIds>({
-  name: RULE_NAME,
-  meta: {
-    type: 'problem',
-    docs: {
-      description: 'Prevents incorrectly importing from packages via relative imports or with \'/src\' appended',
+    name: RULE_NAME,
+    meta: {
+        type: "problem",
+        docs: {
+            description: "Prevents incorrectly importing from packages via relative imports or with '/src' appended",
+        },
+        fixable: "code",
+        schema: [],
+        messages: {
+            relativePackageImport: "Use workspace imports (@rad/package-name) instead of relative paths through the packages directory",
+            packageImportWithSrc: "Use workspace imports (@rad/package-name) instead of relative paths with '/src' in them",
+        },
     },
-    fixable: 'code',
-    schema: [],
-    messages: {
-      relativePackageImport: 'Use workspace imports (@rad/package-name) instead of relative paths through the packages directory',
-      packageImportWithSrc: 'Use workspace imports (@rad/package-name) instead of relative paths with \'/src\' in them',
-    },
-  },
-  defaultOptions: [],
+    defaultOptions: [],
 
-  create(context) {
-    return {
-      /**
-       * Checks import declarations for incorrect relative package imports.
-       */
-      ImportDeclaration(node) {
-        const importSource = node.source.value
+    create(context) {
+        return {
+            /**
+             * Checks import declarations for incorrect relative package imports.
+             */
+            ImportDeclaration(node) {
+                const importSource = node.source.value;
 
-        // Ensure we're working with a string import source
-        if (typeof importSource !== 'string') {
-          return
-        }
+                // Ensure we're working with a string import source
+                if (typeof importSource !== "string") {
+                    return;
+                }
 
-        // Check for imports that traverse through the packages directory
-        const packagesImportMatch = importSource.match(RELATIVE_PACKAGES_IMPORT_PATTERN)
-        if (packagesImportMatch) {
-          // Extract the package name from the matched groups
-          // Find the first capture group that doesn't contain '..' or 'packages'
-          const packageName = packagesImportMatch.find(
-            group => group && !group.includes('..') && !group.includes('packages'),
-          ) || ''
+                // Check for imports that traverse through the packages directory
+                const packagesImportMatch = importSource.match(RELATIVE_PACKAGES_IMPORT_PATTERN);
+                if (packagesImportMatch) {
+                    // Extract the package name from the matched groups
+                    // Find the first capture group that doesn't contain '..' or 'packages'
+                    const packageName = packagesImportMatch.find(
+                        group => group && !group.includes("..") && !group.includes("packages"),
+                    ) || "";
 
-          // Remove '/src' if present, as workspace imports don't include it
-          const cleanPackageName = packageName.replace('/src', '')
+                    // Remove '/src' if present, as workspace imports don't include it
+                    const cleanPackageName = packageName.replace("/src", "");
 
-          context.report({
-            messageId: 'relativePackageImport',
-            node: node.specifiers[0] || node,
-            fix: (fixer) => {
-              const workspaceImport = `"${WORKSPACE_SCOPE}${cleanPackageName}"`
-              return fixer.replaceText(node.source, workspaceImport)
+                    context.report({
+                        messageId: "relativePackageImport",
+                        node: node.specifiers[0] || node,
+                        fix: fixer => {
+                            const workspaceImport = `"${WORKSPACE_SCOPE}${cleanPackageName}"`;
+                            return fixer.replaceText(node.source, workspaceImport);
+                        },
+                    });
+                }
+
+                // Check for imports that include '/src' in relative paths
+                const srcImportMatch = importSource.match(RELATIVE_SRC_IMPORT_PATTERN);
+                if (srcImportMatch) {
+                    // Extract the package name (capture group 3)
+                    const packageName = srcImportMatch[3];
+
+                    if (packageName) {
+                        context.report({
+                            node: node.specifiers[0] || node,
+                            messageId: "packageImportWithSrc",
+                            fix: fixer => {
+                                const workspaceImport = `"${WORKSPACE_SCOPE}/${packageName}"`;
+                                return fixer.replaceText(node.source, workspaceImport);
+                            },
+                        });
+                    }
+                }
             },
-          })
-        }
-
-        // Check for imports that include '/src' in relative paths
-        const srcImportMatch = importSource.match(RELATIVE_SRC_IMPORT_PATTERN)
-        if (srcImportMatch) {
-          // Extract the package name (capture group 3)
-          const packageName = srcImportMatch[3]
-
-          if (packageName) {
-            context.report({
-              node: node.specifiers[0] || node,
-              messageId: 'packageImportWithSrc',
-              fix: (fixer) => {
-                const workspaceImport = `"${WORKSPACE_SCOPE}/${packageName}"`
-                return fixer.replaceText(node.source, workspaceImport)
-              },
-            })
-          }
-        }
-      },
-    }
-  },
-})
+        };
+    },
+});
