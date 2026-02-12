@@ -5,9 +5,11 @@ import { defineKnipConfig } from "@adddog/monorepo-consistency";
 export default defineKnipConfig({
     entry: ["src/index.ts"],
     project: ["src/**/*.ts"],
+    // WHY: knip/tsx not in devDeps, used in scripts
     ignoreBinaries: ["knip", "tsx"],
+    // WHY: @eslint/js is a runtime dep used by rules; @antfu/eslint-config used in config
     ignoreDependencies: ["@eslint/js", "@antfu/eslint-config"],
-    // Exports used for rule definitions
+    // WHY: exports used for ESLint rule definitions
     ignoreExportsUsedInFile: true,
     rules: {
         exports: "off",
