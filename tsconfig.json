@@ -31,7 +31,7 @@
         "noUnusedParameters": true,
         "noFallthroughCasesInSwitch": true,
         "noUncheckedSideEffectImports": true,
-        "paths": {},
+        "erasableSyntaxOnly": true,
         "types": [
             "node"
         ]
