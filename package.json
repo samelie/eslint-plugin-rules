@@ -44,7 +44,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "types": "tsc -p tsconfig.typecheck.json",
-    "test": "echo '⚠️⚠️⚠️no test vitest --watch=false'",
+    "test": "vitest --watch=false",
     "prepublishOnly": "pnpm run lint && pnpm run types && pnpm run build",
     "prepack": "pnpm run prepublishOnly",
     "release": "bumpp --yes --no-push --no-tag --release patch",
@@ -61,11 +61,15 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^7.4.3",
+    "@rad/vite": "workspace:*",
+    "@typescript-eslint/parser": "^8.56.0",
+    "@typescript-eslint/rule-tester": "^8.56.0",
     "@typescript-eslint/utils": "^8.56.0",
     "bumpp": "^10.4.1",
     "eslint": "^10.0.0",
     "typescript": "^5.9.3",
-    "unbuild": "^3.6.1"
+    "unbuild": "^3.6.1",
+    "vitest": "^3.2.4"
   },
   "publishConfig": {
     "access": "public",
