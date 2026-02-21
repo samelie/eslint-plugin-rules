@@ -48,15 +48,15 @@ const RELATIVE_SRC_IMPORT_PATTERN = /^((\.\.\/)+(.*?)(\/src))?(\/.+)?$/;
 
 /**
  * The workspace scope used for all internal packages.
- * In this monorepo, all packages are scoped under '@rad/'.
+ * In this monorepo, all packages are scoped under '@adddog/'.
  */
-const WORKSPACE_SCOPE = "@rad";
+const WORKSPACE_SCOPE = "@adddog";
 
 /**
  * ESLint rule to prevent incorrect package imports in a monorepo.
  *
  * This rule enforces that packages within the monorepo are imported using
- * the workspace scope (@rad) rather than relative paths. It automatically
+ * the workspace scope (@adddog) rather than relative paths. It automatically
  * fixes violations by converting relative imports to scoped imports.
  *
  * ❌ Bad:
@@ -67,8 +67,8 @@ const WORKSPACE_SCOPE = "@rad";
  *
  * ✅ Good:
  * ```ts
- * import { logger } from '@rad/logging'
- * import { env } from '@rad/env'
+ * import { logger } from '@adddog/logging'
+ * import { env } from '@adddog/env'
  * ```
  *
  * @see https://pnpm.io/workspaces for more on pnpm workspace patterns
@@ -83,8 +83,8 @@ export default createEslintRule<Options, MessageIds>({
         fixable: "code",
         schema: [],
         messages: {
-            relativePackageImport: "Use workspace imports (@rad/package-name) instead of relative paths through the packages directory",
-            packageImportWithSrc: "Use workspace imports (@rad/package-name) instead of relative paths with '/src' in them",
+            relativePackageImport: "Use workspace imports (@adddog/package-name) instead of relative paths through the packages directory",
+            packageImportWithSrc: "Use workspace imports (@adddog/package-name) instead of relative paths with '/src' in them",
         },
     },
     defaultOptions: [],

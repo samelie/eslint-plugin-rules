@@ -55,7 +55,7 @@ export default [
 
 ### `no-incorrect-pkg-imports`
 
-Prevents incorrect package imports in monorepo workspaces by enforcing the use of workspace scope (`@rad`) instead of relative paths.
+Prevents incorrect package imports in monorepo workspaces by enforcing the use of workspace scope (`@adddog`) instead of relative paths.
 
 #### ❌ Incorrect
 
@@ -70,9 +70,9 @@ import { env } from '../../env/src/config'
 #### ✅ Correct
 
 ```typescript
-import { env } from '@rad/env'
+import { env } from '@adddog/env'
 // Use workspace scope
-import { logger } from '@rad/logging'
+import { logger } from '@adddog/logging'
 ```
 
 #### Options

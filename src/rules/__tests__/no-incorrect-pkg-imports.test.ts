@@ -19,9 +19,9 @@ const ruleTester = new RuleTester({
 ruleTester.run(RULE_NAME, rule as unknown as RuleModule<MessageIds, Options>, {
     valid: [
         // Correct workspace import
-        "import { logger } from \"@rad/logging\";",
+        "import { logger } from \"@adddog/logging\";",
         // Correct workspace import with subpath
-        "import { env } from \"@rad/env\";",
+        "import { env } from \"@adddog/env\";",
         // Relative import within same package (no ../packages or ../src)
         "import { helper } from \"./utils\";",
         // Relative import one level up within same package
@@ -34,7 +34,7 @@ ruleTester.run(RULE_NAME, rule as unknown as RuleModule<MessageIds, Options>, {
     invalid: [
         {
             code: "import { logger } from \"../../../packages/logging/src\";",
-            output: "import { logger } from \"@rad/logging\";",
+            output: "import { logger } from \"@adddog/logging\";",
             errors: [
                 { messageId: "relativePackageImport" },
                 { messageId: "packageImportWithSrc" },
@@ -42,17 +42,17 @@ ruleTester.run(RULE_NAME, rule as unknown as RuleModule<MessageIds, Options>, {
         },
         {
             code: "import { env } from \"../../packages/env\";",
-            output: "import { env } from \"@rad/env\";",
+            output: "import { env } from \"@adddog/env\";",
             errors: [{ messageId: "relativePackageImport" }],
         },
         {
             code: "import { helper } from \"../../logging/src/index\";",
-            output: "import { helper } from \"@rad/logging\";",
+            output: "import { helper } from \"@adddog/logging\";",
             errors: [{ messageId: "packageImportWithSrc" }],
         },
         {
             code: "import { config } from \"../../../config/src\";",
-            output: "import { config } from \"@rad/config\";",
+            output: "import { config } from \"@adddog/config\";",
             errors: [{ messageId: "packageImportWithSrc" }],
         },
     ],
