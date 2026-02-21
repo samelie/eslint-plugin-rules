@@ -49,12 +49,13 @@
     "prepack": "pnpm run prepublishOnly",
     "release": "bumpp --yes --no-push --no-tag --release patch",
     "dev": "tsx src/index.ts",
-    "knip": "knip"
+    "knip": "knip",
+    "version:patch": "npm version patch --no-git-tag-version"
   },
   "peerDependencies": {
     "knip": "^5.64.3",
     "typescript": "^5.9.3",
-    "vitest": "^3.2.4"
+    "vitest": ">=3.2.4"
   },
   "dependencies": {
     "@eslint/js": "^10.0.1"
