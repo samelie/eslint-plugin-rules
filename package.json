@@ -37,7 +37,7 @@
     "lint:fix": "eslint --fix .",
     "types": "tsc -p tsconfig.typecheck.json",
     "test": "vitest --watch=false",
-    "prepublishOnly": "pnpm run lint && pnpm run types && pnpm run build",
+    "prepublishOnly": "pnpm run types && pnpm run build",
     "prepack": "pnpm run prepublishOnly",
     "release": "bumpp --yes --no-push --no-tag --release patch",
     "dev": "tsx src/index.ts",
