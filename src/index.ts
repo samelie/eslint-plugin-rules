@@ -1,6 +1,7 @@
 import type { ESLint, Linter } from "eslint";
-import noAsUnknownAs from "./rules/no-as-unknown-as";
-import noIncorrectPkgImports from "./rules/no-incorrect-pkg-imports";
+import enforceDesignSystemRadImports from "./rules/enforce-design-system-rad-imports.ts";
+import noAsUnknownAs from "./rules/no-as-unknown-as.ts";
+import noIncorrectPkgImports from "./rules/no-incorrect-pkg-imports.ts";
 
 /**
  * ESLint plugin for custom monorepo rules.
@@ -13,6 +14,7 @@ const plugin = {
         name: "adddog",
     },
     rules: {
+        "enforce-design-system-rad-imports": enforceDesignSystemRadImports,
         "no-as-unknown-as": noAsUnknownAs,
         "no-incorrect-pkg-imports": noIncorrectPkgImports,
     },

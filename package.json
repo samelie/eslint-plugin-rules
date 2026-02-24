@@ -1,7 +1,7 @@
 {
   "name": "@adddog/eslint-plugin-rules",
   "type": "module",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "private": false,
   "homepage": "https://github.com/samelie/eslint-plugin-rules#readme",
   "repository": {
@@ -54,16 +54,16 @@
   },
   "devDependencies": {
     "@adddog/monorepo-consistency": "workspace:*",
-    "@antfu/eslint-config": "^7.4.3",
     "@adddog/vite": "workspace:*",
-    "@typescript-eslint/parser": "^8.56.0",
-    "@typescript-eslint/rule-tester": "^8.56.0",
-    "@typescript-eslint/utils": "^8.56.0",
+    "@antfu/eslint-config": "^7.4.3",
+    "@typescript-eslint/parser": "^8.56.1",
+    "@typescript-eslint/rule-tester": "^8.56.1",
+    "@typescript-eslint/utils": "^8.56.1",
     "bumpp": "^10.4.1",
-    "eslint": "^10.0.0",
+    "eslint": "^10.0.2",
     "typescript": "^5.9.3",
     "unbuild": "^3.6.1",
-    "vitest": "^3.2.4"
+    "vitest": "^4.0.18"
   },
   "publishConfig": {
     "access": "public",
