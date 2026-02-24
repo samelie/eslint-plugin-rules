@@ -1,7 +1,7 @@
 {
   "name": "@adddog/eslint-plugin-rules",
   "type": "module",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "private": false,
   "homepage": "https://github.com/samelie/eslint-plugin-rules#readme",
   "repository": {

@@ -1,4 +1,4 @@
-import { createEslintRule } from "../utils";
+import { createEslintRule } from "../utils.ts";
 
 export const RULE_NAME = "no-incorrect-pkg-imports";
 export type MessageIds = "relativePackageImport" | "packageImportWithSrc";
