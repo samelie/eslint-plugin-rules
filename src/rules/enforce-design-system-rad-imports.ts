@@ -1,5 +1,5 @@
 import type { TSESTree } from "@typescript-eslint/utils";
-import { createEslintRule } from "../utils.ts";
+import { createEslintRule } from "../utils";
 
 export const RULE_NAME = "enforce-design-system-rad-imports";
 export type MessageIds = "barrelImport" | "uiDeepImport";

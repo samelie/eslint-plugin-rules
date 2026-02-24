@@ -1,4 +1,4 @@
-import { createEslintRule } from "../utils.ts";
+import { createEslintRule } from "../utils";
 
 export const RULE_NAME = "no-as-unknown-as";
 export type MessageIds = "noDoubleAssertion";

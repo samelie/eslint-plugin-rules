@@ -1,7 +1,7 @@
 import type { ESLint, Linter } from "eslint";
-import enforceDesignSystemRadImports from "./rules/enforce-design-system-rad-imports.ts";
-import noAsUnknownAs from "./rules/no-as-unknown-as.ts";
-import noIncorrectPkgImports from "./rules/no-incorrect-pkg-imports.ts";
+import enforceDesignSystemRadImports from "./rules/enforce-design-system-rad-imports";
+import noAsUnknownAs from "./rules/no-as-unknown-as";
+import noIncorrectPkgImports from "./rules/no-incorrect-pkg-imports";
 
 /**
  * ESLint plugin for custom monorepo rules.
