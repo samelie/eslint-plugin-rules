@@ -22,7 +22,7 @@
         ],
         "skipLibCheck": true,
         "moduleResolution": "bundler",
-        "allowImportingTsExtensions": false,
+        "allowImportingTsExtensions": true,
         "isolatedModules": true,
         "moduleDetection": "force",
         "noEmit": false,
