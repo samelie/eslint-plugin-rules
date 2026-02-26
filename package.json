@@ -18,11 +18,18 @@
   ],
   "exports": {
     ".": {
-      "import": "./src/index.ts"
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
     }
   },
-  "main": "./src/index.ts",
-  "types": "./src/index.ts",
+  "main": "./dist/index.mjs",
+  "types": "./dist/index.d.mts",
   "files": [
     "dist"
   ],
@@ -37,8 +44,7 @@
     "lint:fix": "eslint --fix .",
     "types": "tsc -p tsconfig.typecheck.json",
     "test": "vitest --watch=false",
-    "prepublishOnly": "pnpm run types && pnpm run build",
-    "prepack": "pnpm run prepublishOnly",
+    "prepare": "unbuild",
     "release": "bumpp --yes --no-push --no-tag --release patch",
     "dev": "tsx src/index.ts",
     "knip": "knip",
@@ -55,7 +61,7 @@
   "devDependencies": {
     "@adddog/monorepo-consistency": "workspace:*",
     "@adddog/vite": "workspace:*",
-    "@antfu/eslint-config": "^7.4.3",
+    "@antfu/eslint-config": "^7.6.1",
     "@typescript-eslint/parser": "^8.56.1",
     "@typescript-eslint/rule-tester": "^8.56.1",
     "@typescript-eslint/utils": "^8.56.1",
@@ -67,20 +73,6 @@
   },
   "publishConfig": {
     "access": "public",
-    "registry": "https://registry.npmjs.org/",
-    "exports": {
-      ".": {
-        "import": {
-          "types": "./dist/index.d.mts",
-          "default": "./dist/index.mjs"
-        },
-        "require": {
-          "types": "./dist/index.d.cts",
-          "default": "./dist/index.cjs"
-        }
-      }
-    },
-    "main": "./dist/index.mjs",
-    "types": "./dist/index.d.mts"
+    "registry": "https://registry.npmjs.org/"
   }
 }
