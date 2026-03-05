@@ -55,13 +55,8 @@
     "typescript": "^5.9.3",
     "vitest": ">=3.2.4"
   },
-  "dependencies": {
-    "@eslint/js": "^10.0.1"
-  },
   "devDependencies": {
     "@adddog/monorepo-consistency": "workspace:*",
-    "@adddog/vite": "workspace:*",
-    "@antfu/eslint-config": "^7.6.1",
     "@typescript-eslint/parser": "^8.56.1",
     "@typescript-eslint/rule-tester": "^8.56.1",
     "@typescript-eslint/utils": "^8.56.1",
