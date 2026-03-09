@@ -26,7 +26,7 @@ const ruleDocumentationBaseUrl = "https://github.com/antfu/eslint-plugin-antfu/b
  *
  * @template TOptions - Tuple type representing the rule's option values
  */
-export interface RuleModule<TOptions extends readonly unknown[]> extends Rule.RuleModule {
+interface RuleModule<TOptions extends readonly unknown[]> extends Rule.RuleModule {
     defaultOptions: TOptions;
 }
 
@@ -205,82 +205,3 @@ export const createEslintRule = createRuleFactory(
     ...rule
 }: Readonly<RuleWithMetaAndName<TOptions, TMessageIds>>) => RuleModule<TOptions>;
 
-/**
- * Set of warning messages that have already been logged.
- * Used to prevent duplicate warnings during rule execution.
- */
-const loggedWarnings = new Set<string>();
-
-/**
- * Logs a warning message only once during the lifetime of the process.
- *
- * This prevents console spam when the same warning condition is encountered
- * multiple times during linting operations.
- *
- * @param message - The warning message to display
- *
- * @example
- * ```ts
- * if (deprecatedFeatureUsed) {
- *   warnOnce('Feature X is deprecated, use Y instead')
- * }
- * ```
- */
-export function warnOnce(message: string): void {
-    if (loggedWarnings.has(message)) {
-        return;
-    }
-    loggedWarnings.add(message);
-    console.warn(message);
-}
-
-/**
- * AST node interface representing any ESTree node.
- */
-interface ASTNode {
-    type: string;
-    [key: string]: unknown;
-}
-
-/**
- * Creates a type-checking function for AST nodes.
- *
- * Returns a predicate function that checks if a given node matches
- * the specified AST node type.
- *
- * @param nodeType - The ESTree node type to check for (e.g., 'Literal', 'Identifier')
- * @returns Predicate function that returns true if node matches the type
- *
- * @example
- * ```ts
- * const isIdentifier = createNodeTypeChecker('Identifier')
- * if (isIdentifier(node)) {
- *   // node is an Identifier
- * }
- * ```
- */
-function createNodeTypeChecker(nodeType: string) {
-    return (node: unknown): node is ASTNode => {
-        return (
-            typeof node === "object"
-            && node !== null
-            && "type" in node
-            && (node as ASTNode).type === nodeType
-        );
-    };
-}
-
-/**
- * Checks if an AST node is a Literal node.
- *
- * @param node - The node to check
- * @returns True if the node is a Literal type
- *
- * @example
- * ```ts
- * if (isLiteral(node)) {
- *   // node represents a literal value like a string, number, or boolean
- * }
- * ```
- */
-export const isLiteral = createNodeTypeChecker("Literal");
