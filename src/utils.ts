@@ -26,7 +26,7 @@ const ruleDocumentationBaseUrl = "https://github.com/antfu/eslint-plugin-antfu/b
  *
  * @template TOptions - Tuple type representing the rule's option values
  */
-interface RuleModule<TOptions extends readonly unknown[]> extends Rule.RuleModule {
+export interface RuleModule<TOptions extends readonly unknown[]> extends Rule.RuleModule {
     defaultOptions: TOptions;
 }
 
