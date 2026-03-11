@@ -204,4 +204,3 @@ export const createEslintRule = createRuleFactory(
     meta,
     ...rule
 }: Readonly<RuleWithMetaAndName<TOptions, TMessageIds>>) => RuleModule<TOptions>;
-
