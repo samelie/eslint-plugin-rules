@@ -4,6 +4,7 @@ import noAsUnknownAs from "./rules/no-as-unknown-as";
 import noIncorrectPkgImports from "./rules/no-incorrect-pkg-imports";
 // re-export RuleModule so rollup-plugin-dts can name it in the generated .d.ts —
 // without this, `unbuild` fails with TS4023 and breaks `pnpm install` everywhere
+// eslint-disable-next-line no-barrel-files/no-barrel-files -- needed for unbuild TS4023
 export type { RuleModule } from "./utils";
 
 /**
