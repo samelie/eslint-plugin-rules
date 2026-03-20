@@ -1,5 +1,4 @@
 import type { ESLint, Linter } from "eslint";
-import enforceDesignSystemRadImports from "./rules/enforce-design-system-rad-imports";
 import noAsUnknownAs from "./rules/no-as-unknown-as";
 import noIncorrectPkgImports from "./rules/no-incorrect-pkg-imports";
 // re-export RuleModule so rollup-plugin-dts can name it in the generated .d.ts —
@@ -18,7 +17,6 @@ const plugin = {
         name: "adddog",
     },
     rules: {
-        "enforce-design-system-rad-imports": enforceDesignSystemRadImports,
         "no-as-unknown-as": noAsUnknownAs,
         "no-incorrect-pkg-imports": noIncorrectPkgImports,
     },
