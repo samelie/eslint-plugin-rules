@@ -57,12 +57,12 @@
   },
   "devDependencies": {
     "@adddog/monorepo-consistency": "workspace:*",
-    "@typescript-eslint/parser": "^8.59.4",
-    "@typescript-eslint/rule-tester": "^8.59.4",
-    "@typescript-eslint/utils": "^8.59.4",
+    "@typescript-eslint/parser": "^8.60.0",
+    "@typescript-eslint/rule-tester": "^8.60.0",
+    "@typescript-eslint/utils": "^8.60.0",
     "@typescript/native-preview": "beta",
     "bumpp": "^11.1.0",
-    "eslint": "^10.4.0",
+    "eslint": "^10.4.1",
     "unbuild": "^3.6.1",
     "vitest": "^4.1.7"
   },
