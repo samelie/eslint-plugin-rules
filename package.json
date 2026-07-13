@@ -62,7 +62,7 @@
     "@typescript-eslint/utils": "^8.63.0",
     "@typescript/native-preview": "beta",
     "bumpp": "^11.1.0",
-    "eslint": "^10.6.0",
+    "eslint": "^10.7.0",
     "unbuild": "^3.6.1",
     "vitest": "^4.1.10"
   },
