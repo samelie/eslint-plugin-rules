@@ -130,7 +130,7 @@ export default createEslintRule<Options, MessageIds>({
                     // Extract the package name (capture group 3)
                     const packageName = srcImportMatch[3];
 
-                    if (packageName) {
+                    if (packageName && !/^\.+$/.test(packageName)) {
                         context.report({
                             node: node.specifiers[0] || node,
                             messageId: "packageImportWithSrc",

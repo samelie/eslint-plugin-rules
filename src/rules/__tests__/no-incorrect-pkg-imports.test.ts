@@ -26,6 +26,10 @@ ruleTester.run(RULE_NAME, rule as unknown as RuleModule<MessageIds, Options>, {
         "import { helper } from \"./utils\";",
         // Relative import one level up within same package
         "import { helper } from \"../utils\";",
+        "import { helper } from \"../src/index.js\";",
+        "import { helper } from \"../../src/commands/config.js\";",
+        "import { helper } from \"../../../src/utils/workspace.js\";",
+        "import { helper } from \"../../src/domains/config/index.js\";",
         // External package import
         "import React from \"react\";",
         // Scoped external package
